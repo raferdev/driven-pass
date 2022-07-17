@@ -12,8 +12,73 @@ datasource db {
 
 model User {
   id Int @id @default(autoincrement())
-  name String
   email String @unique
+  password String
   created_at DateTime @default(now())
+  notes Notes[]
+  cards Cards[]
+  credentials Credentials[]
+  wireless Wireless[]
+}
 
+model Notes {
+  id Int @id @default(autoincrement())
+  title String @db.VarChar(50)
+  text String 
+  user_id Int 
+  user User @relation(fields: [user_id],references: [id])
+  created_at DateTime @default(now())
+  @@unique([user_id,title])
+}
+
+model Cards {
+  id Int @id @default(autoincrement())
+  title String @db.VarChar(50)
+  card_number String
+  name_user String
+  secure_code String
+  exp_date String
+  password String 
+  virtual_card Boolean
+  type_id Int
+  user_id Int
+  user User @relation(fields: [user_id],references: [id])
+  type Cards_Types @relation(fields: [type_id],references: [id])
+  created_at DateTime @default(now())
+  @@unique([user_id,title])
+}
+
+model Credentials {
+  id Int @id @default(autoincrement())
+  title String @db.VarChar(50)
+  url String 
+  name String 
+  password String
+  user_id Int
+  user User @relation(fields: [user_id],references: [id])
+  created_at DateTime @default(now())
+  @@unique([user_id,title])
+}
+
+model Wireless {
+  id Int @id @default(autoincrement())
+  title String @db.VarChar(50)
+  name String
+  password String
+  user_id Int
+  user  User @relation(fields: [user_id],references: [id])
+  created_at DateTime @default(now())
+  @@unique([user_id,title])
+}
+
+model Cards_Types {
+  id Int @id @default(autoincrement())
+  type Card_Type @unique
+  cards Cards[]
+}
+
+enum Card_Type {
+  Credit 
+  Debit
+  Crebit
 }
