@@ -1,14 +1,15 @@
 import { Token } from "../interfaces/auth";
 import { newCredentialRequest } from "../interfaces/credentials.js";
 import Repositories from "../repositories/index.js";
+import Utils from "../utils/index.js";
 
 async function create(credential:newCredentialRequest,id:Token) {
     const newCredential = {
         user_id:id.id,
         title:credential.title,
-        url:credential.url,
-        name:credential.name,
-        password:credential.password,
+        url:Utils.data.encrypt(credential.url),
+        name:Utils.data.encrypt(credential.name),
+        password:Utils.data.encrypt(credential.password),
     }
 
     return await Repositories.credential.create(newCredential)
@@ -20,6 +21,11 @@ async function findAll(id:number) {
     if(!result) {
         return 'Do not found!'
     }
+    result.forEach(credential => {
+        credential.url = Utils.data.decrypt(credential.url)
+        credential.name = Utils.data.decrypt(credential.name)
+        credential.password = Utils.data.decrypt(credential.password)
+    })
     return result;
 }
 

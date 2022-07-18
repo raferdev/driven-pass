@@ -2,12 +2,13 @@ import { Token } from "../interfaces/auth";
 import { deleteCard } from "../interfaces/card.js";
 import { notesSchema, notesSchemaRequest } from "../interfaces/notes";
 import Repositories from "../repositories/index.js";
+import Utils from "../utils/index.js";
 
 async function create(note:notesSchemaRequest,id:Token) {
     const newNote:notesSchema = {
         user_id:id.id,
         title:note.title,
-        text:note.text
+        text:Utils.data.encrypt(note.text)
     }
 
     return await Repositories.notes.create(newNote)
@@ -19,6 +20,9 @@ async function findAll(id:number) {
     if(!result) {
         return 'Do not found!'
     }
+    result.forEach(note => {
+        note.text = Utils.data.decrypt(note.text)
+    })
     return result;
 }
 
