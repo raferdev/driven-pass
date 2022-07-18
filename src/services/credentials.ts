@@ -29,7 +29,7 @@ async function del(title:string,id:number) {
         title:title
     }
     
-   return await Repositories.card.del(deleteCard)
+   return await Repositories.credential.del(deleteCard)
 }
 
 const credential = {

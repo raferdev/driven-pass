@@ -1,4 +1,5 @@
 import client from "../config/database.js";
+import { deleteCard } from "../interfaces/card.js";
 import { newCredential } from "../interfaces/credentials.js";
 
 async function create(newCredential:newCredential) {
@@ -7,8 +8,8 @@ async function create(newCredential:newCredential) {
 async function findAll(id:number) {
     return await client.credentials.findMany({where:{user_id:id}});
 }
-async function del(card) {
-    return await client.credentials.delete({where:{user_id_title:card}})
+async function del(credential:deleteCard) {
+    return await client.credentials.delete({where:{user_id_title:credential}})
 }
 const credential = {
     create,
