@@ -1,7 +1,9 @@
 import user from "./authRp.js";
+import card from "./cardsRp.js";
 
 const Repositories = {
-    user
+    user,
+    card
 };
 
 export default Repositories;

@@ -19,7 +19,7 @@ async function signIn(user:Auth) {
     if(!validPassword) {
         throw {type:"auth_error",message:"Invalid password or email"}
     }
-    const token = jwt.sign({email:userDb.email},process.env.JWT_SECRET,{ expiresIn:'12h' });
+    const token = jwt.sign({id:userDb.id},process.env.JWT_SECRET,{ expiresIn:'12h' });
 
     const result = {
         token,
@@ -29,7 +29,6 @@ async function signIn(user:Auth) {
 
     return result;
 }
-
 
 const auth = {
     create,
