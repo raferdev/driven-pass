@@ -5,7 +5,7 @@ import Services from "../../services/index.js";
 async function signUpCtr(req:Request,res:Response) {
     const newUser:Auth = req.body;
 
-    await Services.user.create(newUser)
+    await Services.auth.create(newUser)
     
     res.sendStatus(200);
 }

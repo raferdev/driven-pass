@@ -1,7 +1,7 @@
-import user from "./auth.js";
+import auth from "./auth.js";
 
 const Services = {
-    user
+    auth
 };
 
 export default Services;
