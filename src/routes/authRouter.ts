@@ -4,6 +4,7 @@ import signUpSchemaMd from "../middlewares/schemas/signUpSchemaMd.js";
 
 const authRouter = Router();
 
-authRouter.get('/signup',signUpSchemaMd,signUpCtr)
+authRouter.post('/signup',signUpSchemaMd,signUpCtr)
+authRouter.post('/signin',signUpSchemaMd)
 
 export default authRouter;

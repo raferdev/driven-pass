@@ -1,7 +1,7 @@
 import client from "../config/database.js";
-import { NewUser } from "../interfaces/auth.js";
+import { Auth } from "../interfaces/auth.js";
 
-async function create(newUser:NewUser) {
+async function create(newUser:Auth) {
     return await client.user.create({data:newUser})
 }
 
