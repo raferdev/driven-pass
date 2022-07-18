@@ -5,6 +5,8 @@ export type newCardRequest = Omit<Cards,"id"|"created_at"|"user_id">
 export type newCard = Omit<Cards,"id"|"created_at">
 
 export type deleteCard = {
-    id:number,
+    user_id:number,
     title: string
 }
+
+export type deleteCardRequest = Omit<deleteCard,"user_id">

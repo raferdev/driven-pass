@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { newCardRequest } from "../interfaces/card.js";
+import { deleteCardRequest, newCardRequest } from "../interfaces/card.js";
 
 export const cardsSchema = Joi.object<newCardRequest>({
     title:Joi.string().max(50).required(),
@@ -10,4 +10,8 @@ export const cardsSchema = Joi.object<newCardRequest>({
     password:Joi.string().required(),
     virtual_card:Joi.boolean().required(),
     type_id:Joi.number().integer().required()
+})
+
+export const deleteCardSchema = Joi.object<deleteCardRequest>({
+    title:Joi.string().max(50).required(),
 })

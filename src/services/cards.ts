@@ -1,5 +1,5 @@
 import { Token } from "../interfaces/auth";
-import { newCardRequest } from "../interfaces/card.js";
+import { deleteCard, newCardRequest } from "../interfaces/card.js";
 import Repositories from "../repositories/index.js";
 
 async function create(card:newCardRequest,id:Token) {
@@ -27,8 +27,13 @@ async function findAll(id:number) {
     return result;
 }
 
-async function del(cardNumber:string) {
+async function del(title:string,id:number) {
+    const deleteCard:deleteCard = {
+        user_id:id,
+        title:title
+    }
     
+   return await Repositories.card.del(deleteCard)
 }
 
 const card = {

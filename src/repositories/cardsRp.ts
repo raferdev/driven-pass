@@ -6,8 +6,8 @@ async function create(newCard:newCard) {
 async function findAll(id:number) {
     return await client.cards.findMany({where:{user_id:id}});
 }
-async function del(deleteCard:deleteCard) {
-    return await client.cards.delete({where:deleteCard})
+async function del(card:deleteCard) {
+    return await client.cards.delete({where:{user_id_title:card}})
 }
 const card = {
     create,
