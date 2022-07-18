@@ -19,6 +19,7 @@ model User {
   cards Cards[]
   credentials Credentials[]
   wireless Wireless[]
+  @@map("user")
 }
 
 model Notes {
@@ -29,6 +30,7 @@ model Notes {
   user User @relation(fields: [user_id],references: [id])
   created_at DateTime @default(now())
   @@unique([user_id,title])
+  @@map("notes")
 }
 
 model Cards {
@@ -46,6 +48,7 @@ model Cards {
   type Cards_Types @relation(fields: [type_id],references: [id])
   created_at DateTime @default(now())
   @@unique([user_id,title])
+  @@map("cards")
 }
 
 model Credentials {
@@ -58,6 +61,7 @@ model Credentials {
   user User @relation(fields: [user_id],references: [id])
   created_at DateTime @default(now())
   @@unique([user_id,title])
+  @@map("credentials")
 }
 
 model Wireless {
@@ -69,12 +73,14 @@ model Wireless {
   user  User @relation(fields: [user_id],references: [id])
   created_at DateTime @default(now())
   @@unique([user_id,title])
+  @@map("wireless")
 }
 
 model Cards_Types {
   id Int @id @default(autoincrement())
   type Card_Type @unique
   cards Cards[]
+  @@map("cards_types")
 }
 
 enum Card_Type {
