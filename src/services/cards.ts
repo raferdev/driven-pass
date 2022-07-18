@@ -19,8 +19,12 @@ async function create(card:newCardRequest,id:Token) {
     
 }
 
-async function findAll() {
-    
+async function findAll(id:number) {
+    const result =  await Repositories.card.findAll(id);
+    if(!result) {
+        return 'Do not found!'
+    }
+    return result;
 }
 
 async function del(cardNumber:string) {
